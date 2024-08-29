@@ -1,0 +1,44 @@
+name: Run Tests
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+        - 'src/**'
+        - 'tests/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+        - 'src/**'
+        - 'tests/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Install Tesseract-ocr & poppler-utils
+        run: |
+          sudo apt-get update
+          sudo apt-get install tesseract-ocr
+          sudo apt-get install poppler-utils
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11.5'
+          cache: 'pip' # Caches dependencies to speed up workflow runs
+        
+      - name: Install developer dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Build cython extensions
+        run: python setup.py build_ext --inplace
+
+      - name: Run tests
+        run: pytest tests/
