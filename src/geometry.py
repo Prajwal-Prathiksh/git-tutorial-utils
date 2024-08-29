@@ -4,7 +4,7 @@ This module contains functions for geometry related operations.
 
 from math import pi
 
-from .arithmetic import multiply
+from .arithmetic import multiply, power
 
 
 def rectangle_area(width: int | float, height: int | float) -> float:
@@ -30,6 +30,6 @@ def circle_circumference(radius: int | float) -> float:
 
 def circle_area(radius: int | float) -> float:
     """Calculate the area of a circle."""
-    raise NotImplementedError(
-        "circle_area is not implemented yet. Should be implmented only after src.arithmetic.power is implemented."
-    )
+    if radius < 0:
+        raise ValueError("Radius must be non-negative.")
+    return multiply(pi, power(radius, 2))
