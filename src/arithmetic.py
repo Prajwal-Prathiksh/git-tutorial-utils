@@ -4,6 +4,8 @@ This module contains functions for arithmetic operations.
 Python 3.6+ is required to run this module, since it uses type hints.
 """
 
+from math import pow
+
 
 def add(a: int | float, b: int | float) -> int | float:
     """Add two numbers."""
@@ -27,7 +29,7 @@ def divide(a: int | float, b: int | float) -> float:
 
 def power(a: int | float, b: int | float) -> int | float:
     """Raise a to the power of b."""
-    raise NotImplementedError("power is not implemented yet")
+    return pow(a, b)
 
 
 def factorial(n: int) -> int:
