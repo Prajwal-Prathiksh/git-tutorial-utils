@@ -4,7 +4,7 @@ This module contains tests for the arithmetic module.
 
 import pytest
 
-from src.arithmetic import add, divide, multiply, subtract
+from src.arithmetic import add, divide, multiply, power, subtract
 
 
 def test_add():
@@ -39,6 +39,13 @@ def test_divide_by_zero():
     """Test that divide raises a ZeroDivisionError when appropriate."""
     with pytest.raises(ZeroDivisionError):
         divide(1, 0)
+
+
+def test_power():
+    """Test the power function."""
+    assert power(2, 3) == 8
+    assert power(0, 0) == 1
+    assert power(-1, 1) == -1
 
 
 if __name__ == "__main__":

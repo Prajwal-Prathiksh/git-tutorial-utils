@@ -7,7 +7,12 @@ from math import pi
 import numpy as np
 import pytest
 
-from src.geometry import circle_circumference, rectangle_area, triangle_area
+from src.geometry import (
+    circle_area,
+    circle_circumference,
+    rectangle_area,
+    triangle_area,
+)
 
 
 def test_rectangle_area():
@@ -32,6 +37,14 @@ def test_circle_circumference():
     assert np.isclose(circle_circumference(0), 0)
     with pytest.raises(ValueError):
         circle_circumference(-1)
+
+
+def test_circle_area():
+    """Test the circle_area function."""
+    assert np.isclose(circle_area(1), pi)
+    assert np.isclose(circle_area(0), 0)
+    with pytest.raises(ValueError):
+        circle_area(-1)
 
 
 if __name__ == "__main__":
