@@ -15,9 +15,10 @@ def subtract(a: int | float, b: int | float) -> int | float:
     return a - b
 
 
-def multiply(a: int | float, b: int | float) -> int | float:
-    """Multiply two numbers."""
-    return a * b
+def multiply_or_power(a:int|float, b: int|float, power:bool=False)-> int|float:
+    """Multiply two numbers or raise a to the power of b."""
+    if power:   return a**b
+    return a*b
 
 
 def divide(a: int | float, b: int | float) -> float:
@@ -25,11 +26,8 @@ def divide(a: int | float, b: int | float) -> float:
     return a / b
 
 
-def power(a: int | float, b: int | float) -> int | float:
-    """Raise a to the power of b."""
-    raise NotImplementedError("power is not implemented yet")
-
-
-def factorial(n: int) -> int:
+def factorial(n:int)->int:
     """Calculate the factorial of n."""
-    raise NotImplementedError("factorial is not implemented yet")
+    if n==0:  return 1
+    elif n<0: raise ValueError("Factorial is not defined for negative numbers.")
+    else:  return n*factorial(n-1)
