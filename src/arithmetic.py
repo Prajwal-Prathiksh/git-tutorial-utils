@@ -27,9 +27,13 @@ def divide(a: int | float, b: int | float) -> float:
 
 def power(a: int | float, b: int | float) -> int | float:
     """Raise a to the power of b."""
-    raise NotImplementedError("power is not implemented yet")
+    return a**b
 
 
 def factorial(n: int) -> int:
     """Calculate the factorial of n."""
-    raise NotImplementedError("factorial is not implemented yet")
+    if n < 0:
+        raise ValueError("n must be non-negative")
+    if isinstance(n, float):
+        raise ValueError("n must be an integer")
+    return 1 if n == 0 else n * factorial(n - 1)

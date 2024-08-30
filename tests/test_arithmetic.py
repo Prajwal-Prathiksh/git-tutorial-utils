@@ -2,9 +2,10 @@
 This module contains tests for the arithmetic module.
 """
 
+import numpy as np
 import pytest
 
-from src.arithmetic import add, divide, multiply, subtract
+from src.arithmetic import add, divide, factorial, multiply, power, subtract
 
 
 def test_add():
@@ -39,6 +40,27 @@ def test_divide_by_zero():
     """Test that divide raises a ZeroDivisionError when appropriate."""
     with pytest.raises(ZeroDivisionError):
         divide(1, 0)
+
+
+def test_power():
+    """Test the power function."""
+    assert power(2, 3) == 8
+    assert power(0, 0) == 1
+    assert power(2, 0) == 1
+    assert power(0, 2) == 0
+    assert np.isclose(power(2, 0.5), np.sqrt(2))
+    assert np.isclose(power(2, -1), 0.5)
+
+
+def test_factorial():
+    """Test the factorial function."""
+    assert factorial(0) == 1
+    assert factorial(1) == 1
+    assert factorial(5) == 120
+    with pytest.raises(ValueError):
+        factorial(-1)
+    with pytest.raises(ValueError):
+        factorial(0.5)  # type: ignore
 
 
 if __name__ == "__main__":
